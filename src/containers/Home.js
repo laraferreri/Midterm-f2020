@@ -1,9 +1,9 @@
 import React from "react";
 
-function Home(){}
+function Home() {
     return(
         <div>
-            <h1> Home: midterm </h1>
+        <h1>Home: Midterm</h1>
         </div>
     );
 }
