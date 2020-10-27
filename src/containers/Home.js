@@ -2,27 +2,36 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Header from "../components/Header";
+
 // import Quote from "../components/Quote";
 
-const pictureKey = `18867180-8f7cdb769b5f244e15fa99e70`;
-const category= {};
+// const API = `563492ad6f917000010000015390cedee23740efb1d9578d11aaa935`;
 
 function Home() {
-const [pictureData, setPictureData] = useState({});
- 
+const [searchParam, setSearchParam] = useState("nature");
+const apiKey = ('563492ad6f917000010000015390cedee23740efb1d9578d11aaa935');
+
     useEffect(() => {
         axios
-        .get(`https://pixabay.com/api/=${pictureKey}&category=${category}`
-        )
+        .get(`https://api.pexels.com/v1/search?query=${"searchParam"}`,
+        {
+            params: {
+                headers: {
+                    'Authorization': apiKey
+        }
+            }
+                }   
+                    )
+
         .then(function (response){
-            setPictureData(response);
+            setSearchParam(response);
         })
         .catch(function(error){
-            console.log(error);
+            console.warn(error);
         })
     }, []);
 
-console.log("pictureData", pictureData);
+console.log("searchParam", searchParam);
 
 return (
     <>
