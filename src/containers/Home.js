@@ -9,11 +9,11 @@ import Header from "../components/Header";
 
 function Home() {
 const [searchParam, setSearchParam] = useState("nature");
-const apiKey = ('563492ad6f917000010000015390cedee23740efb1d9578d11aaa935');
+const apiKey = '563492ad6f917000010000015390cedee23740efb1d9578d11aaa935';
 
     useEffect(() => {
         axios
-        .get(`https://api.pexels.com/v1/search?query=${"searchParam"}`,
+        .get(`https://api.pexels.com/v1/search?query=${searchParam}`,
         {
             params: {
                 headers: {
@@ -21,18 +21,16 @@ const apiKey = ('563492ad6f917000010000015390cedee23740efb1d9578d11aaa935');
         }
             }
                 }   
-                    )
-
+        )
         .then(function (response){
-            setSearchParam(response);
+            const newSearchParam = response.searchParam
+            setSearchParam(newSearchParam);
         })
         .catch(function(error){
             console.warn(error);
         })
-    }, []);
-
-console.log("searchParam", searchParam);
-
+    }, [searchParam]);
+    
 return (
     <>
     <Header/>
@@ -42,6 +40,7 @@ return (
             </div>
             <div className="info">
             <h2> The mood of this board is {} </h2>
+            <p>{searchParam}</p>
              </div>
         </main>
     </>
