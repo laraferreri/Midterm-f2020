@@ -36,12 +36,24 @@ return (
     <>
     <Header/>
         <main className= "home">
-            <div className= "description">
-                <p> On this page you will be able to generate a series of random images and quotes to display a mood board!</p>
-            </div>
-            <div className="info">
-            <h2> The mood of this board is {} </h2>
-            <p>{searchParam}</p>
+            <div className= "text">
+                <div className= "description">
+                On this page you will be able to generate a series of random images and quotes to display a mood board!
+                </div>
+                
+                <div className="info">
+                <h2> The mood of this board is</h2>
+                </div>
+                
+                <div className= "searchBar">
+                <input type= "text" placeholder="search.."> </input>
+                
+                </div>
+                
+                <div className= "topic">
+                <p>{searchParam}</p>
+                </div>
+
              </div>
         </main>
     </>
