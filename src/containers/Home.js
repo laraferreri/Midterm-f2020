@@ -30,7 +30,8 @@ const apiKey = '563492ad6f917000010000015390cedee23740efb1d9578d11aaa935';
             console.warn(error);
         })
     }, [searchParam]);
-    
+
+
 return (
     <>
     <Header/>
