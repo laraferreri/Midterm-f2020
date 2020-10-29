@@ -10,6 +10,7 @@ const apiKey2 = 'b99SVmlnOXbWXBjYOfs1sXuGAyLreZbZ5';
 function Home() {
 const [searchParam, setSearchParam] = useState("nature");
 const [pexelData, setPexelData] = useState([]);
+const [GifData, setGifData] = useState([]);
 
 useEffect(() => {
     axios
@@ -30,27 +31,28 @@ useEffect(() => {
     })
 }, [searchParam]);
 
-// useEffect(() => {
-// axios
-// .get(`https://api.giphy.com/v1/gifs/search?query=${searchParam2}&apiKey=${apiKey2}`,
-// )
 
-// .then(function (response){
-// console.log(response);
-// const data2 = response
-// setGifData(data2)
-// })
+useEffect(() => {
+axios
+.get(`https://api.giphy.com/v1/gifs/query=${searchParam}?api_key=${apiKey2}`)
 
-// .catch(function(error){
-// console.warn(error);
-// })
+.then(function (response){
+console.log(response);
+const data2 = response
+setGifData(data2)
+})
 
-// }, [searchParam2]);
+.catch(function(error){
+console.warn(error);
+})
+
+}, [searchParam]);
 
 
 return (
     <>
     <Header/>
+        
         <main className= "home">
                 <div onClick= {() => setSearchParam("dogs")}> dogs </div>
                 <div onClick= {() => setSearchParam("flower")}> flower </div>
@@ -59,6 +61,7 @@ return (
                 <div onClick= {() => setSearchParam("cats")}> cats </div>
                 <div onClick= {() => setSearchParam("nature")}> nature </div>
         </main>
+
         <div className="info">
 
         {pexelData.map((photo, i) => (

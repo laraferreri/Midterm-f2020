@@ -3,7 +3,7 @@ import React from "react";
 function Header() {
     return(
         <div className="Header">
-          <p>Images</p>
+          <p>Images and Gifs</p>
         </div>
 
     );
