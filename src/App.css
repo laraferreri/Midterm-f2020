@@ -1,32 +1,36 @@
+
 .Header{
     text-align: center;
     font-size: 50pt;
-}
-
-.description{
-    font-size: 30pt;
-    text-align: center;
-    margin: 40px 0px;
+    border-style: double;
+    margin: 40px 40px;
+    background-color: #FFF0F5;
 }
 
 .info{
     text-align: center;
     font-size: 20pt;
     margin: 40px 40px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 10px;
+    background-color:#DCDCDC;
 
 }
+.Photo{
+    border-style: double 1px;
+    background-color: #FFF0F5;
+}
 
-.topics{
+.home{
     margin: 0px 40px;
     font-size: 35pt;
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.photo{
-    margin: 0px 40px;
 }
 
 h5{
