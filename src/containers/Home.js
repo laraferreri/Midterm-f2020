@@ -3,51 +3,77 @@ import axios from "axios";
 
 import Header from "../components/Header";
 
-// import Quote from "../components/Quote";
+const apiKey = '563492ad6f917000010000015390cedee23740efb1d9578d11aaa935';
 
-// const API = `563492ad6f917000010000015390cedee23740efb1d9578d11aaa935`;
 
 function Home() {
 const [searchParam, setSearchParam] = useState("nature");
-const apiKey = '563492ad6f917000010000015390cedee23740efb1d9578d11aaa935';
+const [pexelData, setPexelData] = useState([]);
+const [gifData, setGifData] = useState();
+const apiKey2 = 'b99SVmlnOXbWXBjYOfs1sXuGAyLreZbZ5';
+// const search = `https://api.giphy.com/v1/gifs/search?query=${searchParam}&apiKey=${apiKey2}`;
 
-    useEffect(() => {
-        axios
-        .get(`https://api.pexels.com/v1/search?query=${searchParam}`,
-        {
-            params: {
-                headers: {
-                    'Authorization': apiKey
+useEffect(() => {
+    axios
+    .get(`https://api.pexels.com/v1/search?query=${searchParam}&apiKey=${apiKey}`,
+    {
+            headers: {
+                'Authorization': apiKey
+    }
         }
-            }
-                }   
-        )
-        .then(function (response){
-            const newSearchParam = response.searchParam
-            setSearchParam(newSearchParam);
-        })
-        .catch(function(error){
-            console.warn(error);
-        })
-    }, [searchParam]);
+    )
+    .then(function (response){
+        const data = response.data.photos
+        setPexelData(data)
+        
+    })
+    .catch(function(error){
+        console.warn(error);
+    })
+}, [searchParam]);
+// console.log(pexelData);
+
+useEffect(() => {
+axios
+.get(`https://api.giphy.com/v1/stickers/packs/3138/stickers?api_key=${apiKey2}`
+)
+
+.then(function (response){
+console.log(response);
+const data = response
+setGifData(data)
+})
+
+.catch(function(error){
+console.warn(error);
+})
+
+}, [gifData]);
+
 
 
 return (
     <>
     <Header/>
         <main className= "home">
+            <div className= "topics">
+            <nav>
+                <div onClick= {() => setSearchParam("dogs")}> dogs </div>
+                <div onClick= {() => setSearchParam("flower")}> flower </div>
+                <div onClick= {() => setSearchParam("house")}> house </div>
+                <div onClick= {() => setSearchParam("people")}> people </div>
+                <div onClick= {() => setSearchParam("cats")}> cats </div>
+                <div onClick= {() => setSearchParam("nature")}> nature </div>
+            </nav>
+            </div>
+
             <div className= "text">
                 <div className= "description">
-                On this page you will be able to generate a series of random images and quotes to display a mood board!
+                blah blah blah blah
                 </div>
-                
+                {}
                 <div className="info">
-                <h2> The mood of this board is</h2>
-                </div>
-                
-                <div className= "searchBar">
-                <input type= "text" placeholder="search.."> </input>
-                
+                <h2> blah blah blah</h2>
                 </div>
                 
                 <div className= "topic">
@@ -56,8 +82,18 @@ return (
 
              </div>
         </main>
-    </>
-);
 
+        {pexelData.map((photo, i) => (
+        <div className="Photo" key={i}>
+
+          <img src={photo.url} alt="alt text" />
+          <h3>{photo.photographer}</h3>
+          <h4>{photo.url}</h4>
+          <h5>{photo.id}</h5>
+          
+        </div>
+      ))}
+     </>
+    );
 }
 export default Home;
