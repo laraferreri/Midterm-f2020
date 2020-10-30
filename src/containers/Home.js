@@ -69,6 +69,7 @@ return (
           <h3>{photo.photographer}</h3>
           <h4><a href={photo.url}> Click here for Image!</a></h4>
           <h5> photo id number:{photo.id}</h5>
+          <h6> </h6>
         </div>
       ))}
       </div>
